@@ -41,14 +41,44 @@ end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
+  return false if s.empty?
+  return false if s =~ /\A[^a-z]/i
+  return true if s =~ /\A[^aeiou]/i
+  return false
 end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
+  return false if s.empty? || s =~ /[^01]/
+  (s == '0') || s.end_with?('00')
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  # YOUR CODE HERE
+  attr_accessor :isbn , :price
+    
+    def isbn= (isbn)
+      if isbn == ''
+        raise ArgumentError.new("Invalid ISBN")
+      end
+      @isbn = isbn
+    end
+    
+    def price= (price)
+      if price <= 0
+        raise ArgumentError.new("Invalid price")
+      end
+      @price = price
+    end
+    
+    def initialize (isbn,price)
+        @isbn = isbn 
+        @price = price
+    end
+    
+    def price_as_string
+        return "$" << '%.2f' % price.to_s 
+    end
 end
